@@ -6,8 +6,10 @@ eLryrics,Android application, to study english via popular song and TED video wi
 
 I create eLryrics Android to study Material Design. But I can't public app on Google Play because promotional screenshots must not contain images that appear confusingly similar to existing products.
 I will public eLryrics on GitHub
+
 <strong>Description</strong>
 eLryrics  to study english via popular song and TED video with lyrics
+
 <a href="http://photran.me/wp-content/uploads/2015/02/80088e52-00f2-4e64-82f9-727e87f9abe2.png"><img class="aligncenter wp-image-241 size-large" src="http://photran.me/wp-content/uploads/2015/02/80088e52-00f2-4e64-82f9-727e87f9abe2-613x1024.png" alt="" width="613" height="1024" /></a>
 
 <a href="http://photran.me/wp-content/uploads/2015/02/1ccbc5aa-12ac-424b-a145-219d4020303d.png"><img class="aligncenter wp-image-212 size-large" src="http://photran.me/wp-content/uploads/2015/02/1ccbc5aa-12ac-424b-a145-219d4020303d-613x1024.png" alt="" width="613" height="1024" /></a>
@@ -18,10 +20,9 @@ eLryrics  to study english via popular song and TED video with lyrics
 
 <strong><a title="APK File" href="https://drive.google.com/file/d/0B3i8zKFHmqE6TF9reGdocGpQQ28/view?usp=sharing" target="_blank">APK File
 
+</strong>
 
-</a>GitHub:
-<a href="https://github.com/ttpho/eLyrics"><img class="aligncenter wp-image-243 size-full" src="http://photran.me/wp-content/uploads/2015/02/GitHub-Mark-120px-plus.png" alt="GitHub-Mark-120px-plus" width="120" height="120" /></a>
-</strong>1. Connect to Parse service
+1. Connect to Parse service
 <pre>    private void settingParser() {
         String appID = "E8FDGxCEMeJwm58KFK7Vp6luSGoVYzou5ceQMnTN";
         String clientID = "mnUji5Pak7cWFAOeoK5boGOpVhiWolY6C5lTCPf0";
