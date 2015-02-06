@@ -68,10 +68,13 @@ eLryrics  to study english via popular song and TED video with lyrics
 Service : Parse
 
 <a href="http://photran.me/wp-content/uploads/2015/02/ParseLogo650.jpg"><img class="size-medium wp-image-208 aligncenter" src="http://photran.me/wp-content/uploads/2015/02/ParseLogo650-300x125.jpg" alt="ParseLogo650" width="300" height="125" /></a>
+
 Component open source:
+
 -<a href="http://square.github.io/picasso/" target="_blank">Picasso</a>
 
 -<a href="https://github.com/navasmdc/MaterialDesignLibrary" target="_blank">Material Design</a>
+
  <a title="PTPageView" href="https://github.com/ttpho/PTPageView" target="_blank">-PTPageView</a>
 
 
