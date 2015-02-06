@@ -56,22 +56,24 @@ eLryrics  to study english via popular song and TED video with lyrics
             swipeRefreshLayout.setRefreshing(false);
         }
     };
-
+    
     private void callParser(String dataBaseName) {
         ParseQuery query = ParseQuery.getQuery(dataBaseName);
         query.setLimit(pageSize);
         query.setSkip(skip);
         query.findInBackground(completion);
     }
-
 </pre>
-<strong>Technical</strong>
+
 Service : Parse
+
 <a href="http://photran.me/wp-content/uploads/2015/02/ParseLogo650.jpg"><img class="size-medium wp-image-208 aligncenter" src="http://photran.me/wp-content/uploads/2015/02/ParseLogo650-300x125.jpg" alt="ParseLogo650" width="300" height="125" /></a>
 Component open source:
 -<a href="http://square.github.io/picasso/" target="_blank">Picasso</a>
--<a href="https://github.com/navasmdc/MaterialDesignLibrary" target="_blank">Material Design
-</a><a title="PTPageView" href="https://github.com/ttpho/PTPageView" target="_blank">-PTPageView</a>
+
+-<a href="https://github.com/navasmdc/MaterialDesignLibrary" target="_blank">Material Design</a>
+ <a title="PTPageView" href="https://github.com/ttpho/PTPageView" target="_blank">-PTPageView</a>
+
 
 <strong>J</strong><strong>son Files form Parse</strong>
 - <a href="https://drive.google.com/file/d/0B3i8zKFHmqE6T0laX3EzZ2FMWlU/view?usp=sharing" target="_blank">Songs
