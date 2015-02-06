@@ -8,6 +8,7 @@ I create eLryrics Android to study Material Design. But I can't public app on Go
 I will public eLryrics on GitHub
 
 <strong>Description</strong>
+
 eLryrics  to study english via popular song and TED video with lyrics
 
 <a href="http://photran.me/wp-content/uploads/2015/02/80088e52-00f2-4e64-82f9-727e87f9abe2.png"><img class="aligncenter wp-image-241 size-large" src="http://photran.me/wp-content/uploads/2015/02/80088e52-00f2-4e64-82f9-727e87f9abe2-613x1024.png" alt="" width="613" height="1024" /></a>
