@@ -30,19 +30,16 @@ public class YouTubeVideoAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return this.mModelParses.size();
 	}
 
 	@Override
 	public VideoYoutube getItem(int position) {
-		// TODO Auto-generated method stub
 		return this.mModelParses.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -55,7 +52,6 @@ public class YouTubeVideoAdapter extends BaseAdapter {
 			holder = new ViewHolder();
 			holder.txtTitle = (TextView) convertView
 					.findViewById(R.id.song_title);
-
 			holder.imgPreView = (ImageView) convertView
 					.findViewById(R.id.imgeYoutubePreView);
             holder.txtAuth = (TextView)convertView.findViewById(R.id.singers);
@@ -73,7 +69,6 @@ public class YouTubeVideoAdapter extends BaseAdapter {
             holder.txtAuth.setText(splitTitle[0]);
             holder.txtTitle.setText(splitTitle[1]);
         } else {
-            // title
             holder.txtTitle.setText(model.getTitle());
         }
 		// image

@@ -52,7 +52,6 @@ public class SlideMenuAdapter extends BaseAdapter {
 
 	@Override
 	public long getItemId(int arg0) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -72,7 +71,7 @@ public class SlideMenuAdapter extends BaseAdapter {
 		return v;
 	}
 
-	private static class SlideMenuItemHolder {
+	public static class SlideMenuItemHolder {
 		private TextView txtTitle;
 
 
