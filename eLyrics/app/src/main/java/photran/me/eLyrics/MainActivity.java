@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import photran.me.fragments.ListSongsFragment;
 import photran.me.fragments.YoutubeVideo;
-import photran.me.navigationdrawer.NavigationDrawerFragment;
+import photran.me.customviews.navigationdrawer.NavigationDrawerFragment;
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {

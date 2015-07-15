@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import photran.me.eLyrics.R;
-import photran.me.models.SettingUI;
+import photran.me.untils.SettingUI;
 import photran.me.models.VideoYoutube;
 
 public class YouTubeVideoAdapter extends BaseAdapter {

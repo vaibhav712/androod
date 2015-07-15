@@ -27,16 +27,16 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import photran.me.h2viewpagerstate.H2ViewPagerState;
-import photran.me.lrcview.DefaultLrcBuilder;
-import photran.me.lrcview.ILrcBuilder;
-import photran.me.lrcview.ILrcView;
-import photran.me.lrcview.LrcRow;
-import photran.me.lrcview.LrcView;
-import photran.me.models.NetworkUtils;
-import photran.me.models.SettingUI;
+import photran.me.customviews.h2viewpagerstate.H2ViewPagerState;
+import photran.me.customviews.lrcview.DefaultLrcBuilder;
+import photran.me.customviews.lrcview.ILrcBuilder;
+import photran.me.customviews.lrcview.ILrcView;
+import photran.me.customviews.lrcview.LrcRow;
+import photran.me.customviews.lrcview.LrcView;
+import photran.me.untils.NetworkUtils;
+import photran.me.untils.SettingUI;
 import photran.me.models.SongInforMp3;
-import photran.me.visualizer.VisualizerView;
+import photran.me.customviews.visualizer.VisualizerView;
 
 public class SongDetailActivity extends Activity {
     private ImageView imgSingle;

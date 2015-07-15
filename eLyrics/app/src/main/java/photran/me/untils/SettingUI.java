@@ -1,4 +1,4 @@
-package photran.me.models;
+package photran.me.untils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,6 +13,7 @@ import com.gc.materialdesign.widgets.SnackBar;
 import com.squareup.picasso.Picasso;
 
 import photran.me.eLyrics.R;
+import photran.me.models.FoldingCirclesDrawable;
 
 /**
  * Created by ttpho on 27/01/2015.

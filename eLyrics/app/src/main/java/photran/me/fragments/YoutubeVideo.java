@@ -27,9 +27,9 @@ import java.util.List;
 
 import photran.me.adapters.YouTubeVideoAdapter;
 import photran.me.eLyrics.R;
-import photran.me.models.NetworkUtils;
-import photran.me.models.PMHelper;
-import photran.me.models.SettingUI;
+import photran.me.untils.NetworkUtils;
+import photran.me.untils.PMHelper;
+import photran.me.untils.SettingUI;
 import photran.me.models.VideoYoutube;
 import photran.me.videoview.acvitity.OpenYouTubePlayerActivity;
 

@@ -3,7 +3,7 @@
  * github.com/douzifly
  * douzifly@gmail.com
  */
-package photran.me.lrcview;
+package photran.me.customviews.lrcview;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package photran.me.lrcview;
+package photran.me.customviews.lrcview;
 
 import android.content.Context;
 import android.graphics.Canvas;

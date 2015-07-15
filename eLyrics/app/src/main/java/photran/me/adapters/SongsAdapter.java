@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import photran.me.eLyrics.R;
-import photran.me.models.SettingUI;
+import photran.me.untils.SettingUI;
 import photran.me.models.SongInforMp3;
 
 /**

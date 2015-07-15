@@ -1,4 +1,4 @@
-package photran.me.h2viewpagerstate;
+package photran.me.customviews.h2viewpagerstate;
 
 import android.content.Context;
 import android.content.res.Resources;

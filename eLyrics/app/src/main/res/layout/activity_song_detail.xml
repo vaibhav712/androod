@@ -113,7 +113,7 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent">
-            <photran.me.h2viewpagerstate.H2ViewPagerState
+            <photran.me.customviews.h2viewpagerstate.H2ViewPagerState
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/hViewpagerstate1"

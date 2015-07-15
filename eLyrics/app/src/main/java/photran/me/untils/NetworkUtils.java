@@ -1,4 +1,4 @@
-package photran.me.models;
+package photran.me.untils;
 
 import android.content.Context;
 import android.location.LocationManager;

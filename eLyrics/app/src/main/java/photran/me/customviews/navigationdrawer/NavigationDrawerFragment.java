@@ -1,4 +1,4 @@
-package photran.me.navigationdrawer;
+package photran.me.customviews.navigationdrawer;
 
 
 import android.app.Activity;

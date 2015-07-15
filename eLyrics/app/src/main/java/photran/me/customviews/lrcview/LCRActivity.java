@@ -1,4 +1,4 @@
-package photran.me.lrcview;
+package photran.me.customviews.lrcview;
 
 import java.io.BufferedReader;
 import java.io.IOException;

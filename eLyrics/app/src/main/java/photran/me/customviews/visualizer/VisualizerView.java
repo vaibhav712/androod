@@ -1,4 +1,4 @@
-package photran.me.visualizer;
+package photran.me.customviews.visualizer;
 
 import android.content.Context;
 import android.graphics.Canvas;

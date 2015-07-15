@@ -1,4 +1,4 @@
-package photran.me.models;
+package photran.me.untils;
 
 import android.content.Context;
 
@@ -8,6 +8,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import photran.me.models.SongInforMp3;
+import photran.me.models.VideoYoutube;
 
 public class PMHelper {
 	public static final int STUDY_ENGLISH = 1;
@@ -55,7 +58,7 @@ public class PMHelper {
         songInforMp3.setLyrics_file(obj.getString(SongInforMp3.LYRICS_FILE));
         songInforMp3.setArtist(obj.getString(SongInforMp3.ARTIST));
         songInforMp3.setSong_id_encode(obj.getString(SongInforMp3.SONG_ID_ENCODE));
-        songInforMp3.setSource_128(obj.getString("source128"));
+        songInforMp3.setSource_128(obj.getString(SongInforMp3.SOURCE_128));
 
         return  songInforMp3;
     }

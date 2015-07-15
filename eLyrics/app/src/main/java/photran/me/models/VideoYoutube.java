@@ -1,5 +1,7 @@
 package photran.me.models;
 
+import photran.me.untils.PMHelper;
+
 public class VideoYoutube {
 	private String mLink;
 	private String mImagePreView;

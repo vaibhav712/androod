@@ -14,6 +14,7 @@ public class SongInforMp3 {
     public static String SONG_ID_ENCODE = "song_id_encode";
     public static String TITLE = "title";
     public static String ARTIST = "artist";
+    public static String SOURCE_128 = "source128";
 
 
     private String source_128;

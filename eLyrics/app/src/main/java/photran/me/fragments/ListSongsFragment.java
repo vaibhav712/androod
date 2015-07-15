@@ -31,9 +31,9 @@ import java.util.List;
 import photran.me.adapters.SongsAdapter;
 import photran.me.eLyrics.R;
 import photran.me.eLyrics.SongDetailActivity;
-import photran.me.models.NetworkUtils;
-import photran.me.models.PMHelper;
-import photran.me.models.SettingUI;
+import photran.me.untils.NetworkUtils;
+import photran.me.untils.PMHelper;
+import photran.me.untils.SettingUI;
 import photran.me.models.SongInforMp3;
 
 /**
