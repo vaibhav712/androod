@@ -27,20 +27,19 @@ import java.util.List;
 
 import photran.me.adapters.YouTubeVideoAdapter;
 import photran.me.eLyrics.R;
+import photran.me.parse.ParseSetting;
 import photran.me.untils.NetworkUtils;
 import photran.me.untils.PMHelper;
 import photran.me.untils.SettingUI;
 import photran.me.models.VideoYoutube;
 import photran.me.videoview.acvitity.OpenYouTubePlayerActivity;
 
-public class YoutubeVideo extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AbsListView.OnScrollListener {
-	private static final String DATA_BASE_NAME = "StudyEnglish";
-	private ListView lstYoutubeVideo;
-	private List<VideoYoutube> modelParses = new ArrayList<VideoYoutube>();
-	YouTubeVideoAdapter youTubeVideoAdapter = null;
-    private int pageSize = 10;
+public class ListVideoFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AbsListView.OnScrollListener {
+    private ListView lstYoutubeVideo;
+    private List<VideoYoutube> modelParses = new ArrayList<VideoYoutube>();
+    YouTubeVideoAdapter youTubeVideoAdapter = null;
     private int skip = 0;
-    private  SnackBar snackBar = null;
+    private SnackBar snackBar = null;
     private View.OnClickListener onTapClicked = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -52,7 +51,7 @@ public class YoutubeVideo extends Fragment implements SwipeRefreshLayout.OnRefre
         if (snackBar == null) {
             snackBar = SettingUI.getSnackBarDishPlayErrorNetworking(getActivity(), onTapClicked);
         }
-        return  snackBar;
+        return snackBar;
     }
 
     private boolean isDone = false;
@@ -64,32 +63,32 @@ public class YoutubeVideo extends Fragment implements SwipeRefreshLayout.OnRefre
 
     private FindCallback<ParseObject> completion = new FindCallback<ParseObject>() {
 
-		@Override
-		public void done(List<ParseObject> arg0, ParseException arg1) {
+        @Override
+        public void done(List<ParseObject> arg0, ParseException arg1) {
             googleProgress.setVisibility(View.GONE);
             isDone = true;
-			if (arg1 != null) {
-				Log.v("ParseException", "" + arg1.toString());
+            if (arg1 != null) {
+                Log.v("ParseException", "" + arg1.toString());
                 swipeRefreshLayout.setRefreshing(false);
                 removeFooter();
                 isDone = false;
 
-			} else {
+            } else {
                 if (arg0.size() > 0) {
                     for (ParseObject object : arg0) {
                         VideoYoutube modelParse = PMHelper
                                 .getVideoYoutubeFormParseObject(object);
                         if (isPullToRefesh) {
                             modelParses.add(0, modelParse);
-                        }else {
+                        } else {
                             modelParses.add(modelParses.size(), modelParse);
                         }
                     }
-                    skip = skip + pageSize;
+                    skip = skip + ParseSetting.PAGE_SIZE;
                     initAdapter();
                     if (isPullToRefesh) {
                         swipeRefreshLayout.setRefreshing(false);
-                    }else if (isLoadMore){
+                    } else if (isLoadMore) {
                         int index = modelParses.size() - arg0.size();
                         if (index == 0) {
                             index = 1;
@@ -101,30 +100,30 @@ public class YoutubeVideo extends Fragment implements SwipeRefreshLayout.OnRefre
                     removeFooter();
                     isDone = false;
                 }
-			}
-		}
-	};
-	private OnItemClickListener onItemClickListener = new OnItemClickListener() {
+            }
+        }
+    };
+    private OnItemClickListener onItemClickListener = new OnItemClickListener() {
 
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			VideoYoutube modelParse = youTubeVideoAdapter.getItem(position);
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position,
+                                long id) {
+            VideoYoutube modelParse = youTubeVideoAdapter.getItem(position);
 
-			Intent videoIntent = new Intent(null, Uri.parse("ytv://"
-					+ modelParse.getYoutubeId()), getActivity(),
-					OpenYouTubePlayerActivity.class);
-			startActivity(videoIntent);
-		}
-	};
+            Intent videoIntent = new Intent(null, Uri.parse("ytv://"
+                    + modelParse.getYoutubeId()), getActivity(),
+                    OpenYouTubePlayerActivity.class);
+            startActivity(videoIntent);
+        }
+    };
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_youtube,
                 container,
-				false);
-		lstYoutubeVideo = (ListView) rootView.findViewById(R.id.list);
+                false);
+        lstYoutubeVideo = (ListView) rootView.findViewById(R.id.list);
         footerView = SettingUI.getFooter(this.getActivity());
         lstYoutubeVideo.addFooterView(footerView);
         lstYoutubeVideo.setOnScrollListener(this);
@@ -133,10 +132,12 @@ public class YoutubeVideo extends Fragment implements SwipeRefreshLayout.OnRefre
         SettingUI.settingProgressbar(googleProgress);
 
         settingSwipeDownToRefresh(rootView);
-		return rootView;
-	}
+        return rootView;
+    }
+
     private SwipeRefreshLayout swipeRefreshLayout;
-    private void settingSwipeDownToRefresh(View rootView){
+
+    private void settingSwipeDownToRefresh(View rootView) {
         // for SwipeRefreshLayout don't change
         swipeRefreshLayout = (SwipeRefreshLayout) rootView
                 .findViewById(R.id.lySwipeRefresh);
@@ -146,6 +147,7 @@ public class YoutubeVideo extends Fragment implements SwipeRefreshLayout.OnRefre
                 android.R.color.holo_red_dark);
         swipeRefreshLayout.setOnRefreshListener(this);
     }
+
     @Override
     public void onRefresh() {
         isLoadMore = false;
@@ -153,25 +155,25 @@ public class YoutubeVideo extends Fragment implements SwipeRefreshLayout.OnRefre
         loadListVideos();
     }
 
-	protected void initAdapter() {
-		youTubeVideoAdapter = new YouTubeVideoAdapter(modelParses,
-				getActivity());
-		lstYoutubeVideo.setAdapter(youTubeVideoAdapter);
-		lstYoutubeVideo.setOnItemClickListener(onItemClickListener);
-	}
+    protected void initAdapter() {
+        youTubeVideoAdapter = new YouTubeVideoAdapter(modelParses,
+                getActivity());
+        lstYoutubeVideo.setAdapter(youTubeVideoAdapter);
+        lstYoutubeVideo.setOnItemClickListener(onItemClickListener);
+    }
 
     public void callParser(String strName) {
         isDone = false;
         ParseQuery<ParseObject> query = ParseQuery.getQuery(strName);
-        query.setLimit(pageSize);
+        query.setLimit(ParseSetting.PAGE_SIZE);
         query.setSkip(skip);
         query.findInBackground(completion);
     }
-    private void loadListVideos(){
+
+    private void loadListVideos() {
         if (NetworkUtils.hasConnection(getActivity())) {
-            callParser(DATA_BASE_NAME);
-           // getSnackBar().dismiss();
-        }else {
+            callParser(ParseSetting.DATABASE_NAME_STUDY_ENGLISH);
+        } else {
             if (!getSnackBar().isShowing()) {
                 getSnackBar().show();
             }
@@ -180,11 +182,11 @@ public class YoutubeVideo extends Fragment implements SwipeRefreshLayout.OnRefre
         }
     }
 
-	@Override
-	public void onResume() {
-		super.onResume();
+    @Override
+    public void onResume() {
+        super.onResume();
         loadListVideos();
-	}
+    }
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -200,6 +202,7 @@ public class YoutubeVideo extends Fragment implements SwipeRefreshLayout.OnRefre
             loadListVideos();
         }
     }
+
     void changeStateFinishedLoafMore(final int index) {
         youTubeVideoAdapter.notifyDataSetChanged();
 

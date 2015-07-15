@@ -14,8 +14,8 @@ import com.parse.Parse;
 
 import java.util.ArrayList;
 
-import photran.me.fragments.ListSongsFragment;
-import photran.me.fragments.YoutubeVideo;
+import photran.me.fragments.ListSongFragment;
+import photran.me.fragments.ListVideoFragment;
 import photran.me.customviews.navigationdrawer.NavigationDrawerFragment;
 
 public class MainActivity extends ActionBarActivity
@@ -24,6 +24,9 @@ public class MainActivity extends ActionBarActivity
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private DrawerLayout mDrawerLayout;
     private CharSequence mTitle;
+    private ArrayList<Fragment> listFragments = new ArrayList<>();
+    private ArrayList<String> listTitleFragment = new ArrayList<>();
+    FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,40 +39,44 @@ public class MainActivity extends ActionBarActivity
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
+        // init fragment
+        //initInsideFragment();
+        //initTitleFragment();
+
         // Setup the menu drawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, mDrawerLayout, mToolbar);
 
+
         settingParser();
     }
 
+    private void initInsideFragment() {
+        if (listFragments.size() == 0) {
+            fragmentManager = getSupportFragmentManager();
+            listFragments.add(0, new ListSongFragment());
+            listFragments.add(1, new ListVideoFragment());
+        }
+    }
+
+    private void initTitleFragment() {
+        if (listTitleFragment.size() == 0) {
+            listTitleFragment.add(getString(R.string.title_section2));
+            listTitleFragment.add(getString(R.string.title_section1));
+        }
+    }
+
     private void settingParser() {
-        String appID = "E8FDGxCEMeJwm58KFK7Vp6luSGoVYzou5ceQMnTN";
-        String clientID = "mnUji5Pak7cWFAOeoK5boGOpVhiWolY6C5lTCPf0";
+        String appID = getResources().getString(R.string.appID);
+        String clientID = getResources().getString(R.string.clientID);
         Parse.initialize(this, appID, clientID);
     }
-    private ArrayList<Fragment>listFragments = new ArrayList<>();
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment fragment = null;
-        switch (position){
-            case 0:
-                if (this.listFragments.size() == 0) {
-                    fragment =  new ListSongsFragment();
-                    this.listFragments.add(fragment);
-                }
-                break;
-            case 1:
-                if (this.listFragments.size() == 1) {
-                    fragment =  new YoutubeVideo();
-                    this.listFragments.add(fragment);
-                }
+        initInsideFragment();
 
-                break;
-        }
         fragmentManager.beginTransaction()
                 .replace(R.id.container, listFragments.get(position))
                 .commit();
@@ -79,17 +86,8 @@ public class MainActivity extends ActionBarActivity
     }
 
     public void onSectionAttached(int number) {
-        switch (number) {
-            case 0:
-                mTitle = getString(R.string.title_section1);
-                break;
-            case 1:
-                mTitle = getString(R.string.title_section2);
-                break;
-            case 3:
-                mTitle = getString(R.string.title_section3);
-                break;
-        }
+        initTitleFragment();
+        mTitle = listTitleFragment.get(number % listTitleFragment.size());
     }
 
     public void restoreActionBar() {
@@ -109,7 +107,7 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public void onBackPressed() {
-        if(mDrawerLayout.isDrawerOpen(Gravity.START)){
+        if (mDrawerLayout.isDrawerOpen(Gravity.START)) {
             mDrawerLayout.closeDrawers();
             return;
         }

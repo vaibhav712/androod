@@ -31,6 +31,7 @@ import java.util.List;
 import photran.me.adapters.SongsAdapter;
 import photran.me.eLyrics.R;
 import photran.me.eLyrics.SongDetailActivity;
+import photran.me.parse.ParseSetting;
 import photran.me.untils.NetworkUtils;
 import photran.me.untils.PMHelper;
 import photran.me.untils.SettingUI;
@@ -39,16 +40,13 @@ import photran.me.models.SongInforMp3;
 /**
  * Created by ttpho on 25/01/2015.
  */
-public class ListSongsFragment extends Fragment implements  SwipeRefreshLayout.OnRefreshListener,
-        AdapterView.OnItemClickListener, android.support.v7.widget.SearchView.OnQueryTextListener  {
-
-    private static final String DATA_BASE_NAME = "Songs";
+public class ListSongFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
+        AdapterView.OnItemClickListener, android.support.v7.widget.SearchView.OnQueryTextListener {
     private GridView grvSongs;
     private SwipeRefreshLayout swipeRefreshLayout;
     ProgressBar googleProgress;
     //data
-    private List<SongInforMp3>listSongMp3s = new ArrayList<SongInforMp3>();
-    private int pageSize = 10;
+    private List<SongInforMp3> listSongMp3s = new ArrayList<SongInforMp3>();
     private int skip = 0;
     private FindCallback<ParseObject> completion = new FindCallback<ParseObject>() {
 
@@ -62,16 +60,16 @@ public class ListSongsFragment extends Fragment implements  SwipeRefreshLayout.O
                 for (ParseObject object : arg0) {
                     SongInforMp3 songInforMp3 = PMHelper
                             .getSongInforMp3FormParseObject(object);
-                    listSongMp3s.add(0,songInforMp3);
+                    listSongMp3s.add(0, songInforMp3);
                 }
-                skip = skip + pageSize;
-                Log.v("completion","" + skip + "-" + listSongMp3s.size());
+                skip = skip + ParseSetting.PAGE_SIZE;
+                Log.v("completion", "" + skip + "-" + listSongMp3s.size());
                 initAdapter();
             }
             swipeRefreshLayout.setRefreshing(false);
         }
     };
-    private  SnackBar snackBar = null;
+    private SnackBar snackBar = null;
     private View.OnClickListener onTapClicked = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -83,7 +81,7 @@ public class ListSongsFragment extends Fragment implements  SwipeRefreshLayout.O
         if (snackBar == null) {
             snackBar = SettingUI.getSnackBarDishPlayErrorNetworking(getActivity(), onTapClicked);
         }
-        return  snackBar;
+        return snackBar;
     }
 
     @Override
@@ -91,12 +89,13 @@ public class ListSongsFragment extends Fragment implements  SwipeRefreshLayout.O
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.global, menu);
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        if(searchItem != null) {
+        if (searchItem != null) {
             android.support.v7.widget.SearchView
                     searchView = (android.support.v7.widget.SearchView) MenuItemCompat.getActionView(searchItem);
             if (searchView != null) {
@@ -124,7 +123,8 @@ public class ListSongsFragment extends Fragment implements  SwipeRefreshLayout.O
 
         return rootView;
     }
-    private void settingSwipeDownToRefresh(View rootView){
+
+    private void settingSwipeDownToRefresh(View rootView) {
         // for SwipeRefreshLayout don't change
         swipeRefreshLayout = (SwipeRefreshLayout) rootView
                 .findViewById(R.id.lySwipeRefresh);
@@ -148,7 +148,7 @@ public class ListSongsFragment extends Fragment implements  SwipeRefreshLayout.O
 
     private void loadListMusics() {
         if (NetworkUtils.hasConnection(getActivity())) {
-            callParser(DATA_BASE_NAME);
+            callParser(ParseSetting.DATABASE_NAME_SONGS);
         } else {
             if (!getSnackBar().isShowing()) {
                 getSnackBar().show();
@@ -159,12 +159,13 @@ public class ListSongsFragment extends Fragment implements  SwipeRefreshLayout.O
 
     private void callParser(String dataBaseName) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery(dataBaseName);
-        query.setLimit(pageSize);
+        query.setLimit(ParseSetting.PAGE_SIZE);
         query.setSkip(skip);
         query.findInBackground(completion);
     }
+
     private void initAdapter() {
-        SongsAdapter songsAdapter = new SongsAdapter(getActivity(),listSongMp3s);
+        SongsAdapter songsAdapter = new SongsAdapter(getActivity(), listSongMp3s);
         grvSongs.setAdapter(songsAdapter);
     }
 
@@ -182,12 +183,14 @@ public class ListSongsFragment extends Fragment implements  SwipeRefreshLayout.O
         startActivity(intent);
 
     }
+
     //TODO search implement
     @Override
     public boolean onQueryTextSubmit(String s) {
         Toast.makeText(this.getActivity(), "submit: " + s, Toast.LENGTH_SHORT).show();
         return false;
     }
+
     //TODO search implement
     @Override
     public boolean onQueryTextChange(String s) {
