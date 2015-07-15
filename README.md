@@ -26,6 +26,11 @@ eLryrics  to study english via popular song and TED video with lyrics
 Readmore
 <h3>http://photran.me/elyrics/</h3>
 
+<strong><a title="How to import json file in database" href="https://www.youtube.com/watch?v=3H_SM35wnpA&feature=youtu.be
+" target="_blank">How to import json file in database
+</strong>
+
+
 =========================
 The MIT License (MIT)
 
