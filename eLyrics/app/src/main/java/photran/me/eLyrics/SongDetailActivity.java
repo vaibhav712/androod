@@ -246,6 +246,9 @@ public class SongDetailActivity extends Activity {
         mVisualizer.setDataCaptureListener(new Visualizer.OnDataCaptureListener() {
             public void onWaveFormDataCapture(Visualizer visualizer, byte[] bytes,
                                               int samplingRate) {
+                if (mVisualizerView == null) {
+                    return;
+                }
                 mVisualizerView.updateVisualizer(bytes);
             }
 
@@ -301,7 +304,6 @@ public class SongDetailActivity extends Activity {
 
                 public void onCompletion(MediaPlayer mp) {
                     stopLrcPlay();
-//                    btnPlay.setImageResource(R.drawable.bg_selector_btn_play);
                 }
             });
             mPlayer.setOnBufferingUpdateListener(onBufferingUpdateListener);
@@ -332,11 +334,17 @@ public class SongDetailActivity extends Activity {
             if(beginTime == -1) {
                 beginTime = System.currentTimeMillis();
             }
+            if (mPlayer == null) {
+                return;
+            }
 
             final long timePassed = mPlayer.getCurrentPosition();
             SongDetailActivity.this.runOnUiThread(new Runnable() {
 
                 public void run() {
+                    if (lrcView  == null) {
+                        return;
+                    }
                     lrcView.seekLrcToTime(timePassed);
                 }
             });
